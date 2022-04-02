@@ -5,20 +5,32 @@
 
 # 딕셔너리에 키에 맞는 값이 없는 경우
 
+# 1) in 사용하기
 count = counters.get(key,0)
 counters[key] = count + 1
 
 # 이런 식으로 표현하는 것이 가장 깔끔하다. 
 
+# 2) KeyError 사용하기
+
+# 3) get 사용하기
 # 10번하고 같이 사용하면 더 편하다.
 if (names := votes.get(key)) is None:
 	votes[key] = names = [] # none (키가 없으면, 이것을 처리)
 
 names.append(who)
 
+# 4) setdefault 사용하기
 # 아니면, 딕셔너리의 setdefault 메소드를 사용
 names = votes.setdefault(key, []) # 키가 없으면, []가 자동으로 대입
 names.append(who)
 
 # 근데, 이것은 setdefault의 동작을 나타낼 수가 없대!!! ... 읽기 쉬운코드...읽기 쉬운코드..
 # 그리고 얕은 복사로 default 값이 사용된대.. (독립성을 보장하기 어려움)
+
+# 꼭 setdefault를 쓰는 것이 좋아보인다면 defaultdict를 사용하는 편이 더 좋다.
+
+
+
+
+
